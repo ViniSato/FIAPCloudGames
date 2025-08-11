@@ -8,7 +8,7 @@
         Task<T> AddEntity(T obj);
         Task AddRange(IEnumerable<T> objs);
         Task Update(T obj);
-        Task Delete(int id);
+        Task<bool> Delete(int id);
         Task UpdateRange(IEnumerable<T> objs);
     }
 }

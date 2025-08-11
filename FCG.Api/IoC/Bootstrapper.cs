@@ -9,6 +9,7 @@ namespace FCG.Api.IoC
         {
             services.AddHttpContextAccessor();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            ApiModules.InjectDependencies(services);
             RepositoryModule.InjectDependencies(services);
             ServiceModule.InjectDependencies(services);
             MiddlewareModule.InjectDependencies(services);

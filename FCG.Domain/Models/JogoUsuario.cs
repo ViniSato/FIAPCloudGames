@@ -10,5 +10,4 @@
 
         public DateTime DataCompra { get; set; }
     }
-
 }

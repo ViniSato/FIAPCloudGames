@@ -1,6 +1,8 @@
-﻿namespace FCG.Domain.Interfaces
+﻿using FCG.Domain.Models;
+
+namespace FCG.Domain.Interfaces
 {
-    public interface IUsuarioRepository
+    public interface IUsuarioRepository : IBaseRepository<Usuario>
     {
     }
 }

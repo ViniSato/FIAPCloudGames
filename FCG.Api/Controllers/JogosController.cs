@@ -1,5 +1,5 @@
-﻿using FCG.Application.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using FCG.Api.Models.Requests;
+using FCG.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FCG.Api.Controllers
