@@ -21,5 +21,6 @@
         public ICollection<UsuarioJogo> UsuariosQuePossuem { get; set; } = new List<UsuarioJogo>();
         public ICollection<Avaliacao> AvaliacoesRecebidas { get; set; } = new List<Avaliacao>();
         public ICollection<JogoPlataforma> PlataformasDisponiveis { get; set; } = new List<JogoPlataforma>();
+        public ICollection<JogoGenero> GenerosRelacionados { get; set; } = new List<JogoGenero>();
     }
 }

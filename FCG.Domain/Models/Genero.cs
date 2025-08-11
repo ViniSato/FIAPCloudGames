@@ -7,7 +7,7 @@
         public bool? Ativo { get; set; }
         public DateTime? CriadoEm { get; set; }
         public DateTime? AtualizadoEm { get; set; }
-        public ICollection<Jogo> Jogos { get; set; } = new List<Jogo>();
+        public ICollection<JogoGenero> JogosRelacionados { get; set; } = new List<JogoGenero>();
         public ICollection<UsuarioGeneroFav> UsuariosQueGostam { get; set; } = new List<UsuarioGeneroFav>();
     }
 }
