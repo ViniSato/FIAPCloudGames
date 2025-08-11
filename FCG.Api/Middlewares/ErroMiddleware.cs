@@ -1,32 +1,18 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
-
-namespace FCG.Api.Middlewares
+﻿namespace FCG.Api.Middlewares
 {
-    // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
     public class ErroMiddleware
     {
-        private readonly RequestDelegate _next;
-
-        public ErroMiddleware(RequestDelegate next)
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            _next = next;
-        }
-
-        public Task Invoke(HttpContext httpContext)
-        {
-
-            return _next(httpContext);
-        }
-    }
-
-    // Extension method used to add the middleware to the HTTP request pipeline.
-    public static class ErroMiddlewareExtensions
-    {
-        public static IApplicationBuilder UseErroMiddleware(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<ErroMiddleware>();
+            try
+            {
+                await next(context);
+            }
+            catch
+            {
+                context.Response.StatusCode = 500;
+                await context.Response.WriteAsync("Ocorreu um erro inesperado.");
+            }
         }
     }
 }

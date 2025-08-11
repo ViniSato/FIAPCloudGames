@@ -1,6 +1,8 @@
-﻿namespace FCG.Application.Services
+﻿using FCG.Application.Interfaces;
+
+namespace FCG.Application.Services
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
     }
 }

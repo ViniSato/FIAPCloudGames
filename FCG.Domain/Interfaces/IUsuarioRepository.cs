@@ -1,6 +1,6 @@
 ﻿namespace FCG.Domain.Interfaces
 {
-    public class IUsuarioRepository
+    public interface IUsuarioRepository
     {
     }
 }

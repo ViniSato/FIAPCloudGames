@@ -1,6 +1,18 @@
-﻿namespace FCG.Api.IoC
+﻿using FCG.Api.IoC.Modules;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+
+namespace FCG.Api.IoC
 {
-    public class Bootstrapper
+    public static class Bootstrapper
     {
+        public static IServiceCollection StartRegisterServices(this IServiceCollection services)
+        {
+            services.AddHttpContextAccessor();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            RepositoryModule.InjectDependencies(services);
+            ServiceModule.InjectDependencies(services);
+            MiddlewareModule.InjectDependencies(services);
+            return services;
+        }
     }
 }

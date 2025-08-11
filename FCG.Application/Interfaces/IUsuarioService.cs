@@ -1,6 +1,6 @@
 ﻿namespace FCG.Application.Interfaces
 {
-    public class IUsuarioService
+    public interface IUsuarioService
     {
     }
 }

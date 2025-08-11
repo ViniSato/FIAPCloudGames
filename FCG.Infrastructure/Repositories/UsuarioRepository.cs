@@ -1,6 +1,6 @@
 ﻿namespace FCG.Infrastructure.Repositories
 {
-    public class UsuarioRepository
+    public class UsuarioRepository : Domain.Interfaces.IUsuarioRepository
     {
     }
 }
