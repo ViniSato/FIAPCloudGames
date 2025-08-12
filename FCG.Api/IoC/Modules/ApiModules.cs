@@ -7,6 +7,7 @@ namespace FCG.Api.IoC.Modules
         public static void InjectDependencies(IServiceCollection services)
         {
             services.AddTransient<IUsuarioMapper, UsuarioMapper>();
+            services.AddTransient<IJogoMapper, JogoMapper>();
         }
     }
 }

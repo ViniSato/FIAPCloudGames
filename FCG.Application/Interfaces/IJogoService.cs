@@ -1,9 +1,13 @@
-﻿using FCG.Domain.Models;
+﻿using FCG.Application.DTOs;
 
 namespace FCG.Application.Interfaces
 {
     public interface IJogoService
     {
-        public Task<Jogo> GetJogoByIdAsync(int id);
+        Task<JogoDTO> GetByIdAsync(int id);
+        Task<IEnumerable<JogoDTO>> GetAllAsync();
+        Task CreateAsync(JogoDTO dto);
+        Task UpdateAsync(JogoDTO dto);
+        Task<bool> DeleteAsync(int id);
     }
 }

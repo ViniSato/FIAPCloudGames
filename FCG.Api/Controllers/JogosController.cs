@@ -1,28 +1,64 @@
 ﻿using FCG.Api.Models.Requests;
 using FCG.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using IJogoMapper = FCG.Api.Services.Mappers.IJogoMapper;
 
 namespace FCG.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class JogosController : ControllerBase
     {
         private readonly IJogoService _jogoService;
-        public JogosController(IJogoService jogoService)
+        private readonly IJogoMapper _jogoMapper;
+
+        public JogosController(IJogoService jogoService, IJogoMapper jogoMapper)
         {
-            _jogoService = jogoService ?? throw new ArgumentNullException(nameof(jogoService));
+            _jogoService = jogoService;
+            _jogoMapper = jogoMapper;
         }
 
-        [HttpGet("id")]
-        public async Task<IActionResult> GetJogoById(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            var jogo = await _jogoService.GetJogoByIdAsync(id);
-            if (jogo == null)
-            {
-                return NotFound();
-            }
-            return Ok(jogo);
+            var dto = await _jogoService.GetByIdAsync(id);
+            var response = _jogoMapper.ToResponse(dto);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var dtos = await _jogoService.GetAllAsync();
+            var responses = dtos.Select(_jogoMapper.ToResponse);
+            return Ok(responses);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] JogoRequest request)
+        {
+            var dto = _jogoMapper.ToDto(request);
+            await _jogoService.CreateAsync(dto);
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] JogoRequest request)
+        {
+            var dto = _jogoMapper.ToDto(request);
+            dto.Id = id;
+            await _jogoService.UpdateAsync(dto);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var sucesso = await _jogoService.DeleteAsync(id);
+            if (!sucesso)
+                return NotFound("Jogo não encontrado");
+
+            return NoContent();
         }
     }
 }

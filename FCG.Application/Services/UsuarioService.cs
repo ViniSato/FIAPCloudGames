@@ -30,6 +30,12 @@ namespace FCG.Application.Services
             return _usuarioMapper.ToDto(usuario);
         }
 
+        public async Task<IEnumerable<UsuarioDTO>> GetAllAsync()
+        {
+            var usuarios = await _usuarioRepository.GetAll();
+            return usuarios.Select(_usuarioMapper.ToDto);
+        }
+
         public async Task CreateUsuarioAsync(UsuarioDTO request)
         {
             var senhaHash = _passwordHasher.Hash(request.SenhaHash);

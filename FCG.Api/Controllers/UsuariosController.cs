@@ -21,6 +21,25 @@ namespace FCG.Api.Controllers
             _usuarioMapper = usuarioMapper;
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUsuarioById(int id)
+        {
+            var usuario = await _usuarioService.GetUsuarioByIdAsync(id);
+            if (usuario == null)
+                return NotFound("Usuário não encontrado");
+
+            var response = _usuarioMapper.ToResponse(usuario);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var dtos = await _usuarioService.GetAllAsync();
+            var responses = dtos.Select(_usuarioMapper.ToResponse);
+            return Ok(responses);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateUsuario([FromBody] UsuarioRequest request)
         {
@@ -31,17 +50,6 @@ namespace FCG.Api.Controllers
 
             await _usuarioService.CreateUsuarioAsync(dto);
             return Ok();
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUsuarioById(int id)
-        {
-            var usuario = await _usuarioService.GetUsuarioByIdAsync(id);
-            if (usuario == null)
-                return NotFound("Usuário não encontrado");
-
-            var response = _usuarioMapper.ToResponse(usuario);
-            return Ok(response);
         }
 
         [HttpPut("{id}")]
