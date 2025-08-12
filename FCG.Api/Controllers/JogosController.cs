@@ -1,5 +1,6 @@
 ﻿using FCG.Api.Models.Requests;
 using FCG.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using IJogoMapper = FCG.Api.Services.Mappers.IJogoMapper;
 
@@ -26,7 +27,8 @@ namespace FCG.Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
+        [Authorize]
+        [HttpGet("biblioteca")]
         public async Task<IActionResult> GetAll()
         {
             var dtos = await _jogoService.GetAllAsync();
@@ -34,7 +36,8 @@ namespace FCG.Api.Controllers
             return Ok(responses);
         }
 
-        [HttpPost]
+        [Authorize(Roles = "admin")]
+        [HttpPost("cadastrar")]
         public async Task<IActionResult> Create([FromBody] JogoRequest request)
         {
             var dto = _jogoMapper.ToDto(request);
