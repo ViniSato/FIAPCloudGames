@@ -1,4 +1,5 @@
 ﻿using FCG.Api.Services.Mappers;
+using FCG.Api.Services.Mappers.Interfaces;
 
 namespace FCG.Api.IoC.Modules
 {

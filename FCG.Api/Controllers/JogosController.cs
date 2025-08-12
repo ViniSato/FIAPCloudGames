@@ -3,7 +3,7 @@ using FCG.Application.Interfaces;
 using FCG.Application.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using IJogoMapper = FCG.Api.Services.Mappers.IJogoMapper;
+using IJogoMapper = FCG.Api.Services.Mappers.Interfaces.IJogoMapper;
 
 namespace FCG.Api.Controllers
 {

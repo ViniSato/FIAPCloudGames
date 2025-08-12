@@ -1,5 +1,7 @@
 ﻿using FCG.Application.DTOs;
-using FCG.Application.Interfaces;
+using FCG.Application.Interfaces.Mappers;
+using FCG.Application.Interfaces.Services;
+using FCG.Application.Interfaces.Services.Auth;
 using FCG.Domain.Interfaces;
 using FCG.Domain.Models;
 

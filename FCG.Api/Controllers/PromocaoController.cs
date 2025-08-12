@@ -1,10 +1,10 @@
 ﻿using FCG.Api.Models.Requests;
 using FCG.Api.Models.Responses;
-using FCG.Application.Interfaces;
 using FCG.Application.Exceptions;
-using FCG.Api.Services.Mappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using FCG.Api.Services.Mappers.Interfaces;
+using FCG.Application.Interfaces.Services;
 
 namespace FCG.Api.Controllers
 {

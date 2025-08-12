@@ -1,6 +1,6 @@
 ﻿using FCG.Application.DTOs;
 
-namespace FCG.Application.Interfaces
+namespace FCG.Application.Interfaces.Services
 {
     public interface IPromocaoService
     {

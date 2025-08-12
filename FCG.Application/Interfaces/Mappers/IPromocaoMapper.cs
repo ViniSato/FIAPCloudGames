@@ -1,7 +1,7 @@
 ﻿using FCG.Application.DTOs;
 using FCG.Domain.Models;
 
-namespace FCG.Application.Mappers
+namespace FCG.Application.Interfaces.Mappers
 {
     public interface IPromocaoMapper
     {

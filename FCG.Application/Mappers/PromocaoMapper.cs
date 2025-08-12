@@ -1,4 +1,5 @@
 ﻿using FCG.Application.DTOs;
+using FCG.Application.Interfaces.Mappers;
 using FCG.Domain.Models;
 
 namespace FCG.Application.Mappers

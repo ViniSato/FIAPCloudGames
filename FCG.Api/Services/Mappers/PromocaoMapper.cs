@@ -1,6 +1,6 @@
 ﻿using FCG.Api.Models.Requests;
 using FCG.Api.Models.Responses;
-using FCG.Api.Services.Mappers;
+using FCG.Api.Services.Mappers.Interfaces;
 using FCG.Application.DTOs;
 
 namespace FCG.Api.Mappers

@@ -2,7 +2,7 @@
 using FCG.Api.Models.Responses;
 using FCG.Application.DTOs;
 
-namespace FCG.Api.Services.Mappers
+namespace FCG.Api.Services.Mappers.Interfaces
 {
     public interface IPromocaoMapper
     {

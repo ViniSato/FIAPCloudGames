@@ -1,12 +1,12 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using FCG.Application.Interfaces;
+using FCG.Application.Interfaces.Services.Auth;
 using FCG.Domain.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace FCG.Application.Services
+namespace FCG.Application.Services.Auth
 {
     public class TokenGenerator : ITokenGenerator
     {

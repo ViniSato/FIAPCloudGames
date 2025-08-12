@@ -1,6 +1,10 @@
 ﻿using FCG.Application.Interfaces;
+using FCG.Application.Interfaces.Mappers;
+using FCG.Application.Interfaces.Services;
+using FCG.Application.Interfaces.Services.Auth;
 using FCG.Application.Mappers;
 using FCG.Application.Services;
+using FCG.Application.Services.Auth;
 
 namespace FCG.Api.IoC.Modules
 {

@@ -1,8 +1,8 @@
 ﻿using FCG.Api.Models.Requests;
-using FCG.Application.Interfaces;
-using FCG.Application.Exceptions; 
+using FCG.Application.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using FCG.Application.Interfaces.Services.Auth;
 
 namespace FCG.Api.Controllers
 {

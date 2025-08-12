@@ -1,5 +1,6 @@
 ﻿using FCG.Application.DTOs;
 using FCG.Application.Interfaces;
+using FCG.Application.Interfaces.Mappers;
 using FCG.Domain.Interfaces;
 
 namespace FCG.Application.Services

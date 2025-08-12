@@ -1,7 +1,7 @@
 ﻿using FCG.Application.DTOs;
 using FCG.Domain.Models;
 
-namespace FCG.Application.Interfaces
+namespace FCG.Application.Interfaces.Mappers
 {
     public interface IJogoMapper
     {

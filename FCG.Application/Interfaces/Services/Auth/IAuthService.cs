@@ -1,6 +1,6 @@
 ﻿using FCG.Domain.ValueObjects;
 
-namespace FCG.Application.Interfaces
+namespace FCG.Application.Interfaces.Services.Auth
 {
     public interface IAuthService
     {

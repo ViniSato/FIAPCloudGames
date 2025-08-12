@@ -1,8 +1,8 @@
-﻿using FCG.Application.Interfaces;
+﻿using FCG.Application.Interfaces.Services.Auth;
 using FCG.Domain.Interfaces;
 using FCG.Domain.ValueObjects;
 
-namespace FCG.Application.Services
+namespace FCG.Application.Services.Auth
 {
     public class AuthService : IAuthService
     {

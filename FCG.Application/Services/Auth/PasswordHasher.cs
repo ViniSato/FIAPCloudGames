@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using FCG.Application.Interfaces;
+using FCG.Application.Interfaces.Services.Auth;
 
-namespace FCG.Application.Services
+namespace FCG.Application.Services.Auth
 {
     public class PasswordHasher : IPasswordHasher
     {

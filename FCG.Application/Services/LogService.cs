@@ -1,4 +1,4 @@
-﻿using FCG.Application.Interfaces;
+﻿using FCG.Application.Interfaces.Services;
 using FCG.Domain.Interfaces;
 using FCG.Domain.Models;
 

@@ -1,6 +1,6 @@
 ﻿using FCG.Domain.Models;
 
-namespace FCG.Application.Interfaces
+namespace FCG.Application.Interfaces.Services
 {
     public interface ILogService
     {

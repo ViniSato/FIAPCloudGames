@@ -3,7 +3,7 @@ using FCG.Api.Models.Responses;
 using FCG.Application.DTOs;
 using FCG.Domain.Models;
 
-namespace FCG.Api.Services.Mappers
+namespace FCG.Api.Services.Mappers.Interfaces
 {
     public interface IUsuarioMapper
     {

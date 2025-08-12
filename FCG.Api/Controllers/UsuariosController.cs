@@ -1,8 +1,8 @@
 ﻿using FCG.Api.Models.Requests;
-using FCG.Application.Interfaces;
 using FCG.Application.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using FCG.Application.Interfaces.Services;
 
 namespace FCG.Api.Controllers
 {
@@ -11,11 +11,11 @@ namespace FCG.Api.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
-        private readonly Services.Mappers.IUsuarioMapper _usuarioMapper;
+        private readonly Services.Mappers.Interfaces.IUsuarioMapper _usuarioMapper;
 
         public UsuariosController(
             IUsuarioService usuarioService,
-            Services.Mappers.IUsuarioMapper usuarioMapper)
+            Services.Mappers.Interfaces.IUsuarioMapper usuarioMapper)
         {
             _usuarioService = usuarioService;
             _usuarioMapper = usuarioMapper;
