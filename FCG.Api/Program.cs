@@ -75,7 +75,7 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new() { Title = "FCG API", Version = "v1" });
+    options.SwaggerDoc("v1", new() { Title = "FCG API", Version = "v1" , Description = "API FIAP Cloud Games (FCG)" });
 
     options.AddSecurityDefinition("Bearer", new()
     {
@@ -110,6 +110,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    app.UseReDoc(c =>
+    {
+        c.RoutePrefix = "docs";
+        c.SpecUrl = "/swagger/v1/swagger.json";
+        c.DocumentTitle = "Documentação da API FCG";
+    });
 }
 
 app.MapControllers();
