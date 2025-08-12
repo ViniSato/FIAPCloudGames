@@ -1,6 +1,8 @@
-﻿namespace FCG.Domain.Interfaces
+﻿using FCG.Domain.Models;
+
+namespace FCG.Domain.Interfaces
 {
-    public class IJogoRepository
+    public interface IJogoRepository : IBaseRepository<Jogo>
     {
     }
 }
