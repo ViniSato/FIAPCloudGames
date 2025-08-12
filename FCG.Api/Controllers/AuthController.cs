@@ -22,7 +22,10 @@ namespace FCG.Api.Controllers
         {
             try
             {
-                var token = await _authService.AutenticarAsync(request.Email, request.Senha);
+                var token = await _authService.AutenticarAsync(
+                    request.ToEmail(),
+                    request.ToSenha()
+                );
                 return Ok(new { Token = token });
             }
             catch (UnauthorizedAccessException ex)

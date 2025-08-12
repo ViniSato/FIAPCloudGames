@@ -14,6 +14,7 @@ namespace FCG.Application.Mappers
                 Nome = dto.Nome,
                 Email = dto.Email,
                 SenhaHash = dto.SenhaHash,
+                Papel = dto.Papel,
                 CriadoEm = dto.CriadoEm
             };
         }
@@ -26,6 +27,7 @@ namespace FCG.Application.Mappers
                 Nome = usuario.Nome,
                 Email = usuario.Email,
                 SenhaHash = usuario.SenhaHash,
+                Papel = usuario.Papel,
                 CriadoEm = usuario.CriadoEm
             };
         }

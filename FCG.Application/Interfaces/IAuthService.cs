@@ -1,7 +1,9 @@
-﻿namespace FCG.Application.Interfaces
+﻿using FCG.Domain.ValueObjects;
+
+namespace FCG.Application.Interfaces
 {
     public interface IAuthService
     {
-        Task<string> AutenticarAsync(string email, string senha);
+        Task<string> AutenticarAsync(Email email, Senha senha);
     }
 }

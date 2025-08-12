@@ -1,7 +1,6 @@
-﻿using Azure;
-using FCG.Api.Models.Requests;
-using FCG.Api.Services.Mappers;
+﻿using FCG.Api.Models.Requests;
 using FCG.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FCG.Api.Controllers
@@ -21,6 +20,7 @@ namespace FCG.Api.Controllers
             _usuarioMapper = usuarioMapper;
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUsuarioById(int id)
         {
@@ -32,6 +32,7 @@ namespace FCG.Api.Controllers
             return Ok(response);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -40,6 +41,7 @@ namespace FCG.Api.Controllers
             return Ok(responses);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         public async Task<IActionResult> CreateUsuario([FromBody] UsuarioRequest request)
         {
@@ -52,6 +54,7 @@ namespace FCG.Api.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUsuario(int id, [FromBody] UsuarioRequest request)
         {
@@ -69,6 +72,7 @@ namespace FCG.Api.Controllers
             return NoContent(); 
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)
         {

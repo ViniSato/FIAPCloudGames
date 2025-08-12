@@ -11,6 +11,7 @@ namespace FCG.Api.IoC.Modules
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<IJogoService, JogoService>();
+            services.AddTransient<IPromocaoService, PromocaoService>();
             services.AddTransient<IPasswordHasher, PasswordHasher>();
             services.AddTransient<IUsuarioMapper, UsuarioMapper>();
             services.AddTransient<IJogoMapper, JogoMapper>();

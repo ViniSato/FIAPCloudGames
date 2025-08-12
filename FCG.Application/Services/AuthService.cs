@@ -1,5 +1,6 @@
 ﻿using FCG.Application.Interfaces;
 using FCG.Domain.Interfaces;
+using FCG.Domain.ValueObjects;
 
 namespace FCG.Application.Services
 {
@@ -19,13 +20,13 @@ namespace FCG.Application.Services
             _tokenGenerator = tokenGenerator;
         }
 
-        public async Task<string> AutenticarAsync(string email, string senha)
+        public async Task<string> AutenticarAsync(Email email, Senha senha)
         {
-            var usuario = await _usuarioRepository.GetByEmail(email);
+            var usuario = await _usuarioRepository.GetByEmail(email.Endereco);
             if (usuario == null)
                 throw new UnauthorizedAccessException("Credenciais inválidas");
 
-            var senhaValida = _passwordHasher.Verify(senha, usuario.SenhaHash);
+            var senhaValida = _passwordHasher.Verify(senha.Valor, usuario.SenhaHash);
             if (!senhaValida)
                 throw new UnauthorizedAccessException("Credenciais inválidas");
 

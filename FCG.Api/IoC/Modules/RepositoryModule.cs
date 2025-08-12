@@ -9,6 +9,7 @@ namespace FCG.Api.IoC.Modules
         {
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IJogoRepository, JogoRepository>();
+            services.AddTransient<IPromocaoRepository, PromocaoRepository>();
         }
     }
 }
