@@ -1,11 +1,11 @@
-﻿using FCG.Application.DTOs;
-using FCG.Domain.Models;
+﻿    using FCG.Application.DTOs;
+    using FCG.Domain.Models;
 
-namespace FCG.Application.Interfaces
-{
-    public interface IUsuarioMapper
+    namespace FCG.Application.Interfaces
     {
-        Usuario ToEntity(UsuarioDTO dto);
-        UsuarioDTO ToDto(Usuario usuario);
+        public interface IUsuarioMapper
+        {
+            Usuario ToEntity(UsuarioDTO dto);
+            UsuarioDTO ToDto(Usuario usuario);
+        }
     }
-}

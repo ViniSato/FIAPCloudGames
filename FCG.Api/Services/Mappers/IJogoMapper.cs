@@ -5,9 +5,9 @@ using FCG.Domain.Models;
 
 namespace FCG.Api.Services.Mappers
 {
-    public interface IUsuarioMapper
+    public interface IJogoMapper
     {
-        UsuarioDTO ToDto(UsuarioRequest request);
-        UsuarioResponse ToResponse(UsuarioDTO dto);
+        JogoDTO ToDto(JogoRequest request);
+        JogoResponse ToResponse(JogoDTO dto);
     }
 }
