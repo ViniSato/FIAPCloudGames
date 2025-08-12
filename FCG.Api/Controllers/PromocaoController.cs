@@ -1,6 +1,7 @@
 ﻿using FCG.Api.Models.Requests;
 using FCG.Api.Models.Responses;
 using FCG.Application.Interfaces;
+using FCG.Application.Exceptions;
 using FCG.Api.Services.Mappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,9 @@ namespace FCG.Api.Controllers
         [HttpPost("{jogoId}")]
         public async Task<IActionResult> Create(int jogoId, [FromBody] PromocaoRequest request)
         {
+            if (request == null)
+                throw new ValidationException(new[] { "Requisição inválida." });
+
             var dto = _promocaoMapper.ToDto(request);
             var result = await _promocaoService.CreateAsync(jogoId, dto);
             var response = _promocaoMapper.ToResponse(result);
@@ -45,7 +49,7 @@ namespace FCG.Api.Controllers
         {
             var sucesso = await _promocaoService.DeleteAsync(id);
             if (!sucesso)
-                return NotFound("Promoção não encontrada");
+                throw new NotFoundException("Promoção não encontrada");
 
             return NoContent();
         }

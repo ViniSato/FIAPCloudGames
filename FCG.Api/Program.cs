@@ -86,6 +86,7 @@ builder.Services.StartRegisterServices();
 var app = builder.Build();
 
 app.UseMiddleware<LogMiddleware>();
+app.UseMiddleware<ErroMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

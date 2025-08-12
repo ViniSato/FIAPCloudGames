@@ -1,5 +1,6 @@
 ﻿using FCG.Api.Models.Requests;
 using FCG.Application.Interfaces;
+using FCG.Application.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,8 @@ namespace FCG.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUsuarioById(int id)
         {
-            var usuario = await _usuarioService.GetUsuarioByIdAsync(id);
-            if (usuario == null)
-                return NotFound("Usuário não encontrado");
+            var usuario = await _usuarioService.GetUsuarioByIdAsync(id)
+                ?? throw new NotFoundException("Usuário não encontrado");
 
             var response = _usuarioMapper.ToResponse(usuario);
             return Ok(response);
@@ -46,10 +46,9 @@ namespace FCG.Api.Controllers
         public async Task<IActionResult> CreateUsuario([FromBody] UsuarioRequest request)
         {
             if (request == null)
-                return BadRequest("Requisição inválida");
+                throw new ValidationException(new[] { "Requisição inválida." });
 
             var dto = _usuarioMapper.ToDto(request);
-
             await _usuarioService.CreateUsuarioAsync(dto);
             return Ok();
         }
@@ -59,17 +58,16 @@ namespace FCG.Api.Controllers
         public async Task<IActionResult> UpdateUsuario(int id, [FromBody] UsuarioRequest request)
         {
             if (request == null)
-                return BadRequest("Requisição inválida");
+                throw new ValidationException(new[] { "Requisição inválida." });
 
-            var usuarioExistente = await _usuarioService.GetUsuarioByIdAsync(id);
-            if (usuarioExistente == null)
-                return NotFound("Usuário não encontrado");
+            var usuarioExistente = await _usuarioService.GetUsuarioByIdAsync(id)
+                ?? throw new NotFoundException("Usuário não encontrado");
 
             var dto = _usuarioMapper.ToDto(request);
-            dto.Id = id; 
+            dto.Id = id;
 
             await _usuarioService.UpdateUsuarioAsync(dto);
-            return NoContent(); 
+            return NoContent();
         }
 
         [Authorize(Roles = "Administrador")]
@@ -78,9 +76,9 @@ namespace FCG.Api.Controllers
         {
             var sucesso = await _usuarioService.DeleteUsuarioAsync(id);
             if (!sucesso)
-                return NotFound("Usuário não encontrado");
+                throw new NotFoundException("Usuário não encontrado");
 
-            return NoContent(); 
+            return NoContent();
         }
     }
 }

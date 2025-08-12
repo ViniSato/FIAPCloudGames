@@ -12,7 +12,6 @@ namespace FCG.Api.IoC
             ApiModules.InjectDependencies(services);
             RepositoryModule.InjectDependencies(services);
             ServiceModule.InjectDependencies(services);
-            MiddlewareModule.InjectDependencies(services);
             return services;
         }
     }

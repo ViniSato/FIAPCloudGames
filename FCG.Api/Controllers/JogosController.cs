@@ -1,5 +1,6 @@
 ﻿using FCG.Api.Models.Requests;
 using FCG.Application.Interfaces;
+using FCG.Application.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using IJogoMapper = FCG.Api.Services.Mappers.IJogoMapper;
@@ -22,7 +23,9 @@ namespace FCG.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var dto = await _jogoService.GetByIdAsync(id);
+            var dto = await _jogoService.GetByIdAsync(id)
+                ?? throw new NotFoundException("Jogo não encontrado");
+
             var response = _jogoMapper.ToResponse(dto);
             return Ok(response);
         }
@@ -40,6 +43,9 @@ namespace FCG.Api.Controllers
         [HttpPost("cadastrar")]
         public async Task<IActionResult> Create([FromBody] JogoRequest request)
         {
+            if (request == null)
+                throw new ValidationException(new[] { "Requisição inválida." });
+
             var dto = _jogoMapper.ToDto(request);
             await _jogoService.CreateAsync(dto);
             return Ok();
@@ -49,6 +55,9 @@ namespace FCG.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] JogoRequest request)
         {
+            if (request == null)
+                throw new ValidationException(new[] { "Requisição inválida." });
+
             var dto = _jogoMapper.ToDto(request);
             dto.Id = id;
             await _jogoService.UpdateAsync(dto);
@@ -61,7 +70,7 @@ namespace FCG.Api.Controllers
         {
             var sucesso = await _jogoService.DeleteAsync(id);
             if (!sucesso)
-                return NotFound("Jogo não encontrado");
+                throw new NotFoundException("Jogo não encontrado");
 
             return NoContent();
         }

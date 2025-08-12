@@ -1,6 +1,6 @@
 ﻿using FCG.Api.Models.Requests;
 using FCG.Application.Interfaces;
-using FCG.Domain.ValueObjects;
+using FCG.Application.Exceptions; 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +11,7 @@ namespace FCG.Api.Controllers
     public class AutenticacaoController : ControllerBase
     {
         private readonly IAuthService _authService;
+
         public AutenticacaoController(IAuthService authService)
         {
             _authService = authService;
@@ -20,18 +21,15 @@ namespace FCG.Api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            try
-            {
-                var token = await _authService.AutenticarAsync(
-                    request.ToEmail(),
-                    request.ToSenha()
-                );
-                return Ok(new { Token = token });
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(ex.Message);
-            }
+            if (request == null)
+                throw new ValidationException(new[] { "Requisição inválida." });
+
+            var token = await _authService.AutenticarAsync(
+                request.ToEmail(),
+                request.ToSenha()
+            ) ?? throw new UnauthorizedException("Credenciais inválidas.");
+
+            return Ok(new { Token = token });
         }
     }
 }
