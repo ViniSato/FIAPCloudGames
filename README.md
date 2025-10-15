@@ -56,7 +56,11 @@ Este MVP servirá como base para futuras funcionalidades como matchmaking e gere
 | xUnit + Moq            | Testes unitários                           |
 | JWT                    | Autenticação e autorização                 |
 | Swagger + ReDoc        | Documentação da API                        |
-| FluentAssertions       | Validação de testes                        |
+| FluentAssertions         | Validação de testes                        |
+| Azure DevOps Pipelines   | CI/CD automatizado                         |
+| Docker                   | Containerização do ambiente                |
+| Azure Container Instances (ACI) | Publicação e execução de containers  |
+| Zabbix                   | Monitoramento e alertas de disponibilidade |
 
 ## 📄 Documentação da API
 
@@ -119,6 +123,26 @@ FCG.Domain/
 FCG.Infrastructure/
 FCG.Tests/
 ```
+---
+
+## ⚙️ CI/CD (Azure DevOps)
+
+A pipeline foi configurada para **integração e entrega contínuas** no Azure DevOps:
+
+### 🔄 CI – Continuous Integration
+O pipeline de CI é acionado a cada push na branch `develop`:
+- Restaura dependências (`dotnet restore`)  
+- Executa testes unitários (`dotnet test`)  
+- Faz o build do projeto (`dotnet build`)  
+- Gera a imagem Docker (`docker build`)  
+- Publica o artefato da imagem no Azure Container Registry (ACR)
+
+### 🚀 CD – Continuous Deployment
+O pipeline de CD é disparado automaticamente após a execução bem-sucedida do CI:
+- Puxa a imagem mais recente do ACR  
+- Publica o container no **Azure Container Instances (ACI)**  
+- Atualiza variáveis de ambiente e secrets necessários  
+- Executa health checks pós-deploy
 
 ## 📚 Referências
 
